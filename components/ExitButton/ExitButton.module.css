@@ -1,0 +1,16 @@
+.exit-button {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 9px;
+	border-radius: 29px;
+	border: none;
+	color: var(--white-color);
+	gap: 9px;
+	background: var(--primary-color);
+	margin-top: auto;
+	transition: background 0.25s;
+}
+.exit-button:hover {
+	background: var(--primary-hover-color);
+}
