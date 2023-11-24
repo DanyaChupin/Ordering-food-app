@@ -5,9 +5,17 @@
 	--text-color: #000;
 	--text-secondary-color: #5b5b5e;
 	--white-color: #fff;
-	--secondary-color: #d4d6e0;
+	--separator-color: #d4d6e0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
 }
 
 body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 	font-family: 'Open Sans', sans-serif;
 }
