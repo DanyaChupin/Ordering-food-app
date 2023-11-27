@@ -6,11 +6,19 @@
 	--text-secondary-color: #5b5b5e;
 	--white-color: #fff;
 	--separator-color: #d4d6e0;
+	--border-color: #efefef;
+	--gray-color: #9aa0b4;
 }
 
-ul {
+ul,
+h1,
+h2,
+h3 {
 	margin: 0;
 	padding: 0;
+}
+input:focus {
+	outline: none;
 }
 
 body {

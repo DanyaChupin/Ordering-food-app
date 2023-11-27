@@ -1,4 +1,9 @@
 .exit-button {
+	width: 117px;
+	font-family: inherit;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 16px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;

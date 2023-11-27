@@ -1,0 +1,84 @@
+.link {
+	text-decoration: none;
+}
+.card {
+	cursor: pointer;
+	background: var(--white-color);
+	width: 320px;
+	border-radius: 19px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.card__head {
+	border-radius: 19px;
+	position: relative;
+	min-height: 165px;
+}
+.card__price {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	background: var(--white-color);
+	padding: 3px 10px;
+	border-radius: 25px;
+	color: var(--text-color);
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.price-currency {
+	margin-left: 3px;
+	color: var(--primary-color);
+}
+.card__button {
+	cursor: pointer;
+	position: absolute;
+	background: var(--primary-color);
+	border: none;
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	top: 15px;
+	right: 15px;
+	transition: background-Color 0.25s;
+}
+.card__button:hover {
+	background: var(--primary-hover-color);
+}
+.card__footer {
+	padding: 12px;
+}
+
+.card__rating {
+	box-shadow: 0px 6.0714287757873535px 24.285715103149414px 0px #fe724c33;
+	position: absolute;
+	bottom: -12px;
+	left: 15px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	background: var(--white-color);
+	padding: 3px 8px;
+	border-radius: 25px;
+	color: var(--text-color);
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.card__title {
+	color: var(--text-color);
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.card__description {
+	color: var(--text-secondary-color);
+	font-size: 14px;
+	text-decoration: none;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
