@@ -1,5 +1,5 @@
 import { menuData } from './menuData.ts'
-import MenuItem from '../MenuItem/MenuItem'
+import MenuItem from '../MenuItem/MenuItem.tsx'
 import styles from './MenuList.module.css'
 
 const MenuList = () => {
