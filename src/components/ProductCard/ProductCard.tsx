@@ -1,21 +1,21 @@
-import { ProductCardProps } from './ProductsCard.props'
-import styles from './ProductCard.module.css'
 import { Link } from 'react-router-dom'
+import { Product } from '../../interfaces/product.interface'
+import styles from './ProductCard.module.css'
 
 const ProductCard = ({
-	title,
-	img,
 	id,
-	description,
+	image,
+	ingredients,
+	name,
 	price,
 	rating,
-}: ProductCardProps) => {
+}: Product) => {
 	return (
 		<Link to={`/product/${id}`} className={styles['link']}>
 			<div className={styles['card']}>
 				<div
 					className={styles['card__head']}
-					style={{ backgroundImage: `url(${img})` }}
+					style={{ backgroundImage: `url(${image})` }}
 				>
 					<div className={styles['card__price']}>
 						{price}
@@ -30,8 +30,12 @@ const ProductCard = ({
 					</div>
 				</div>
 				<div className={styles['card__footer']}>
-					<div className={styles['card__title']}>{title}</div>
-					<div className={styles['card__description']}>{description}</div>
+					<div className={styles['card__title']}>{name}</div>
+					<div className={styles['card__ing-wrapper']}>
+						{ingredients.map(ing => (
+							<div className={styles['card__description']}>{ing}</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</Link>
