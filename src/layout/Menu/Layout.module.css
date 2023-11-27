@@ -1,4 +1,11 @@
 .layout {
+	max-width: 1055px;
+	margin: 0 auto;
+	justify-content: space-between;
 	display: flex;
 	min-height: 100vh;
+}
+.layout__content {
+	width: 100%;
+	padding: 30px 60px;
 }
