@@ -1,9 +1,9 @@
-import { MenuItemProps } from './../MenuItem/MenuItem.props'
+import { MenuItemProps } from '../MenuItem/MenuItem.props'
 export const menuData: MenuItemProps[] = [
 	{
 		title: 'Меню',
 		img: '/menu.svg',
-		to: '/menu',
+		to: '/',
 	},
 	{
 		title: 'Корзина',
