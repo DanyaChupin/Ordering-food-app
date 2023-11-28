@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import HeaderPage from '../../components/HeaderPage/Heading'
+import HeaderPage from '../../components/Heading/Heading'
 import { PREFIX } from '../../helpers/API'
 import { Product } from '../../interfaces/product.interface'
 import axios, { AxiosError } from 'axios'
