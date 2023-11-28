@@ -1,0 +1,25 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 29px;
+}
+
+.input-field {
+	display: block;
+	margin-bottom: 5px;
+}
+.form__bottom {
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 19px;
+	margin-top: 29px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.form__bottom-link {
+	text-decoration: none;
+	color: var(--primary-color);
+}
