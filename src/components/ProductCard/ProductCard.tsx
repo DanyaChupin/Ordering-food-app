@@ -33,7 +33,9 @@ const ProductCard = ({
 					<div className={styles['card__title']}>{name}</div>
 					<div className={styles['card__ing-wrapper']}>
 						{ingredients.map(ing => (
-							<div className={styles['card__description']}>{ing}</div>
+							<div key={ing} className={styles['card__description']}>
+								{ing}
+							</div>
 						))}
 					</div>
 				</div>
