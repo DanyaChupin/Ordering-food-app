@@ -18,13 +18,18 @@ const Form = ({ type }: FormProps) => {
 					<label htmlFor='email' className={styles['input-field']}>
 						Ваш email
 					</label>
-					<Input id='email' placeholder='Email' type='email' />
+					<Input id='email' name='email' placeholder='Email' type='email' />
 				</div>
 				<div className={styles['form__input']}>
 					<label htmlFor='password' className={styles['input-field']}>
 						Ваш пароль
 					</label>
-					<Input id='password' placeholder='Пароль' type='password' />
+					<Input
+						id='password'
+						name='passoword'
+						placeholder='Пароль'
+						type='password'
+					/>
 				</div>
 				<Button appearence='big'>
 					{type === 'login' ? 'Вход' : 'Зарегистрироваться'}
