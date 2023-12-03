@@ -1,15 +1,28 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import { FormProps } from './Form.props'
-import styles from './Form.module.css'
 import { FormEvent } from 'react'
+import styles from './Form.module.css'
 
-const Form = ({ type }: FormProps) => {
-	const nav = useNavigate()
+export type LoginForm = {
+	email: {
+		value: string
+	}
+	password: {
+		value: string
+	}
+	name?: {
+		value: string
+	}
+}
+const Form = ({ type, sendAuth }: FormProps) => {
 	const onClick = (e: FormEvent) => {
 		e.preventDefault()
-		nav('/')
+		const target = e.target as typeof e.target & LoginForm
+		const { email, password } = target
+		sendAuth(email.value, password.value)
+		// nav('/')
 	}
 	return (
 		<div className={styles['form-wrapper']}>
@@ -18,14 +31,29 @@ const Form = ({ type }: FormProps) => {
 					<label htmlFor='email' className={styles['input-field']}>
 						Ваш email
 					</label>
-					<Input id='email' placeholder='Email' type='email' />
+					<Input id='email' name='email' placeholder='Email' type='email' />
 				</div>
 				<div className={styles['form__input']}>
 					<label htmlFor='password' className={styles['input-field']}>
 						Ваш пароль
 					</label>
-					<Input id='password' placeholder='Пароль' type='password' />
+					<Input
+						id='password'
+						name='passoword'
+						placeholder='Пароль'
+						type='password'
+					/>
 				</div>
+				{type === 'login' ? (
+					''
+				) : (
+					<div className={styles['form__input']}>
+						<label htmlFor='password' className={styles['input-field']}>
+							Ваше имя
+						</label>
+						<Input id='name' name='name' placeholder='Имя' type='text' />
+					</div>
+				)}
 				<Button appearence='big'>
 					{type === 'login' ? 'Вход' : 'Зарегистрироваться'}
 				</Button>

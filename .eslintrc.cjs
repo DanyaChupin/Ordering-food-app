@@ -15,6 +15,5 @@ module.exports = {
 			{ allowConstantExport: true },
 		],
 		'react/props-types': [0],
-		indent: ['error', 'tab'],
 	},
 }
