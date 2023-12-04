@@ -2,6 +2,8 @@
 	color: red;
 	position: absolute;
 	opacity: 0;
+	left: 90px;
+	top: -20px;
 	margin-bottom: 310px;
 	animation: fade 2s;
 }

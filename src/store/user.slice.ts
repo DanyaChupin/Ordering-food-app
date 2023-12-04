@@ -13,7 +13,7 @@ export interface UserPersistentState {
 }
 export interface UserState {
 	jwt: string | null
-	loginErrorMessage?: string
+	authError?: string | null
 	profile?: Profile
 }
 const initialState: UserState = {
@@ -40,6 +40,27 @@ export const getUserProfile = createAsyncThunk<
 	}
 })
 
+export const register = createAsyncThunk(
+	'user/register',
+	async (params: { email: string; password: string; name: string }) => {
+		try {
+			const { data } = await axios.post<LoginResponse>(
+				`${PREFIX}/auth/register`,
+				{
+					name: params.name,
+					email: params.email,
+					password: params.password,
+				}
+			)
+			return data
+		} catch (e) {
+			if (e instanceof AxiosError) {
+				throw new Error(e.response?.data.message)
+			}
+		}
+	}
+)
+
 export const login = createAsyncThunk(
 	'user/login',
 	async (params: { email: string; password: string }) => {
@@ -64,8 +85,8 @@ export const userSlice = createSlice({
 		logout: state => {
 			state.jwt = null
 		},
-		clearLoginError: state => {
-			state.loginErrorMessage = undefined
+		clearAuthError: state => {
+			state.authError = null
 		},
 	},
 	extraReducers: builder => {
@@ -81,8 +102,17 @@ export const userSlice = createSlice({
 				}
 				state.jwt = action.payload.access_token
 			}),
+			builder.addCase(register.fulfilled, (state, action) => {
+				if (action.payload == null) {
+					return
+				}
+				state.jwt = action.payload.access_token
+			}),
 			builder.addCase(login.rejected, (state, action) => {
-				state.loginErrorMessage = action.error.message
+				state.authError = action.error.message
+			}),
+			builder.addCase(register.rejected, (state, action) => {
+				state.authError = action.error.message
 			})
 	},
 })
