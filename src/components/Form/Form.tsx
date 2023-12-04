@@ -2,31 +2,25 @@ import { Link } from 'react-router-dom'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import { FormProps } from './Form.props'
-import { FormEvent } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispath, RootState } from '../../store/store'
+import FormErrorMessage from '../FormErrorMessage/FormErrorMessage'
+import { useEffect } from 'react'
+import { userActions } from '../../store/user.slice'
 import styles from './Form.module.css'
 
-export type LoginForm = {
-	email: {
-		value: string
-	}
-	password: {
-		value: string
-	}
-	name?: {
-		value: string
-	}
-}
 const Form = ({ type, sendAuth }: FormProps) => {
-	const onClick = (e: FormEvent) => {
-		e.preventDefault()
-		const target = e.target as typeof e.target & LoginForm
-		const { email, password } = target
-		sendAuth(email.value, password.value)
-		// nav('/')
-	}
+	const dispatch = useDispatch<AppDispath>()
+	useEffect(() => {
+		dispatch(userActions.clearAuthError())
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
+	const { authError } = useSelector((state: RootState) => state.user)
 	return (
 		<div className={styles['form-wrapper']}>
-			<form className={styles['form']} onSubmit={onClick}>
+			{authError && <FormErrorMessage error={authError} />}
+			<form className={styles['form']} onSubmit={sendAuth}>
 				<div className={styles['form__input']}>
 					<label htmlFor='email' className={styles['input-field']}>
 						Ваш email
@@ -42,16 +36,23 @@ const Form = ({ type, sendAuth }: FormProps) => {
 						name='passoword'
 						placeholder='Пароль'
 						type='password'
+						required
 					/>
 				</div>
 				{type === 'login' ? (
 					''
 				) : (
 					<div className={styles['form__input']}>
-						<label htmlFor='password' className={styles['input-field']}>
+						<label htmlFor='name' className={styles['input-field']}>
 							Ваше имя
 						</label>
-						<Input id='name' name='name' placeholder='Имя' type='text' />
+						<Input
+							id='name'
+							name='name'
+							placeholder='Имя'
+							type='text'
+							required
+						/>
 					</div>
 				)}
 				<Button appearence='big'>

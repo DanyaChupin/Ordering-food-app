@@ -1,36 +1,42 @@
-import { useEffect } from 'react'
+import { FormEvent, useEffect } from 'react'
 import Form from '../../components/Form/Form'
 import Heading from '../../components/Heading/Heading'
-import FormErrorMessage from '../../components/FormErrorMessage/FormErrorMessage'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispath, RootState } from '../../store/store'
 import { getUserProfile, login, userActions } from '../../store/user.slice'
+import { LoginForm } from '../../types/types'
 
 const Login = () => {
 	const nav = useNavigate()
 	const dispath = useDispatch<AppDispath>()
-	const { jwt, loginErrorMessage } = useSelector(
-		(state: RootState) => state.user
-	)
+	const { jwt } = useSelector((state: RootState) => state.user)
 	useEffect(() => {
 		if (jwt) {
 			nav('/')
 		}
 	}, [jwt, nav])
 
-	const sendLogin = async (email: string, password: string) => {
-		dispath(userActions.clearLoginError())
-		dispath(login({ email, password }))
+	const sendLogin = async (e: FormEvent) => {
+		e.preventDefault()
+
+		dispath(userActions.clearAuthError())
+		const target = e.target as typeof e.target & LoginForm
+		const { email, password } = target
+		dispath(
+			login({
+				email: email.value,
+				password: password.value,
+			})
+		)
 		if (jwt) {
-			dispath(getUserProfile(jwt))
+			dispath(getUserProfile())
 		}
 	}
 
 	return (
 		<>
 			<Heading title='Вход' />
-			{loginErrorMessage && <FormErrorMessage error={loginErrorMessage} />}
 			<Form type='login' sendAuth={sendLogin} />
 		</>
 	)

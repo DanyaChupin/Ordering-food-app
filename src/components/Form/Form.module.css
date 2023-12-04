@@ -1,3 +1,6 @@
+.form-wrapper {
+	position: relative;
+}
 .form {
 	display: flex;
 	flex-direction: column;
