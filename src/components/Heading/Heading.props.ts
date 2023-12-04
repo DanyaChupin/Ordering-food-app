@@ -1,4 +1,6 @@
+import { ReactNode } from 'react'
+
 export interface HeadingProps {
 	title: string
-	withSearch?: boolean
+	children?: ReactNode
 }
