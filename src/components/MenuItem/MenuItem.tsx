@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { MenuItemProps } from './MenuItem.props'
 import styles from './MenuItem.module.css'
 import cn from 'classnames'
+import CountCart from '../CountCart/CountCart'
 
 const MenuItem = ({ title, img, to }: MenuItemProps) => {
 	return (
@@ -20,6 +21,8 @@ const MenuItem = ({ title, img, to }: MenuItemProps) => {
 					alt={`изображение ${title}`}
 				/>
 				{title}
+
+				{title === 'Корзина' ? <CountCart /> : ''}
 			</NavLink>
 		</li>
 	)
