@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom'
-import { Cart } from './pages/cart/Cart.tsx'
+import Cart from './pages/cart/Cart.tsx'
 import Layout from './layout/Menu/Layout.tsx'
 import { Error } from './pages/Error/Error.tsx'
 import Product from './pages/Product/Product.tsx'

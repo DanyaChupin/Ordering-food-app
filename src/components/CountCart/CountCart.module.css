@@ -1,0 +1,11 @@
+.count-cart {
+	background: var(--primary-color);
+	width: 17px;
+	height: 17px;
+	display: flex;
+	color: var(--white-color);
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	padding: 3px;
+}
