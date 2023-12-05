@@ -1,0 +1,23 @@
+.cart {
+	display: flex;
+	max-width: 512px;
+	flex-direction: column;
+	gap: 30px;
+	height: calc(100% - 84px);
+}
+.cart__wrapper {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	max-height: 450px;
+	padding: 10px;
+	overflow: scroll;
+	gap: 14px;
+}
+.cart__info {
+	flex: 0 0 auto;
+	margin-top: auto;
+	display: flex;
+	gap: 16px;
+	flex-direction: column;
+}
