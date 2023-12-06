@@ -1,7 +1,7 @@
 import { RequireAuth } from '../helpers/RequireAuth'
 import { createBrowserRouter, defer } from 'react-router-dom'
 import Layout from '../layout/Menu/Layout'
-import { Suspense, lazy } from 'react'
+import { Suspense } from 'react'
 import Cart from '../pages/Cart/Cart'
 import SuccessOrder from '../pages/SuccessOrder/SuccessOrder'
 import Product from '../pages/Product/Product'
@@ -11,8 +11,7 @@ import AuthLayout from '../layout/Auth/AuthLayout'
 import Login from '../pages/Login/Login'
 import Register from '../pages/Register/Register'
 import { Error } from '../pages/Error/Error'
-
-const Menu = lazy(() => import('../pages/Menu/Menu.tsx'))
+import { MenuLoader } from '../loader/menu.loader'
 
 export const router = createBrowserRouter([
 	{
@@ -27,7 +26,7 @@ export const router = createBrowserRouter([
 				path: '/',
 				element: (
 					<Suspense fallback={<>Загрузка...</>}>
-						<Menu />
+						<MenuLoader />
 					</Suspense>
 				),
 			},
