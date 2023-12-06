@@ -1,21 +1,26 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Heading from '../../components/Heading/Heading'
-import { RootState } from '../../store/store'
+import { AppDispath, RootState } from '../../store/store'
 import CartItem from '../../components/CartItem/CartItem'
 import { useCallback, useEffect, useState } from 'react'
 import { Product } from '../../interfaces/product.interface'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { PREFIX } from '../../helpers/API'
 import styles from './Cart.module.css'
 import CartInfo from '../../components/CartInfo/CartInfo'
 import Button from '../../components/Button/Button'
+import { useNavigate } from 'react-router-dom'
+import { cartActions } from '../../store/cart.slice'
+import { cartInfoSuccess } from '../../interfaces/cartInfo.interface'
 
 const Cart = () => {
 	const [cartProducts, setCartProducts] = useState<Product[]>([])
-
+	const { jwt } = useSelector((state: RootState) => state.user)
+	const nav = useNavigate()
 	const DELIVER_FEE = 169
 	const { items } = useSelector((state: RootState) => state.cart)
 
+	const dispatch = useDispatch<AppDispath>()
 	const getItem = async (id: number) => {
 		const { data } = await axios.get<Product>(`${PREFIX}/products/${id}`)
 		return data
@@ -38,6 +43,28 @@ const Cart = () => {
 			return i.count * product.price
 		})
 		.reduce((acc, i) => (acc += i), 0)
+	const checkout = async () => {
+		try {
+			const { data } = await axios.post<cartInfoSuccess>(
+				`${PREFIX}/order`,
+				{
+					prudcts: cartProducts,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${jwt}`,
+					},
+				}
+			)
+			dispatch(cartActions.clear())
+			nav(`/success/${data.id}`)
+			return data
+		} catch (e) {
+			if (e instanceof AxiosError) {
+				throw new Error(e.message)
+			}
+		}
+	}
 	return (
 		<>
 			<Heading title='Корзина' />
@@ -62,8 +89,11 @@ const Cart = () => {
 							price={allPriceCount + DELIVER_FEE}
 							allItemsCount={allProductsCount}
 						/>
-
-						<Button appearence='big'>Оформить</Button>
+						<div className={styles['cart__button']}>
+							<Button appearence='big' onClick={checkout}>
+								Оформить
+							</Button>
+						</div>
 					</div>
 				</div>
 			)}
