@@ -16,8 +16,13 @@
 }
 .cart__info {
 	flex: 0 0 auto;
-	margin-top: auto;
 	display: flex;
 	gap: 16px;
 	flex-direction: column;
+	align-items: center;
+}
+
+.cart__button {
+	width: 248px;
+	margin-top: 10px;
 }

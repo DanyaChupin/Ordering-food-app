@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter, defer } from 'react-router-dom'
-import Cart from './pages/cart/Cart.tsx'
+import Cart from './pages/Cart/Cart.tsx'
 import Layout from './layout/Menu/Layout.tsx'
 import { Error } from './pages/Error/Error.tsx'
 import Product from './pages/Product/Product.tsx'
@@ -14,6 +14,7 @@ import Register from './pages/Register/Register.tsx'
 import { RequireAuth } from './helpers/RequireAuth.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts'
+import SuccessOrder from './pages/SuccessOrder/SuccessOrder.tsx'
 
 const Menu = lazy(() => import('./pages/Menu/Menu.tsx'))
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
 			{
 				path: '/cart',
 				element: <Cart />,
+			},
+			{
+				path: '/success/:id',
+				element: <SuccessOrder />,
 			},
 			{
 				path: '/product/:id',

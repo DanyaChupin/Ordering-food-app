@@ -29,7 +29,6 @@ const Menu = () => {
 			if (e instanceof AxiosError) {
 				setError(e.message)
 			}
-			console.error(e)
 			return
 		}
 	}
